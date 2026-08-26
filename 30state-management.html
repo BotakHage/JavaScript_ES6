@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Management</title>
+</head>
+<body>
+    <script>
+        /*
+        Tahapan pembuatan state management/bendera checkpoint
+            1️⃣ Inisialisasi (Memasang Tiang Lampu)
+                Membuat sebuah wadah variabel (biasanya menggunakan tipe data boolean true/false) sebagai benderanya.
+                let isLoadingDone = false; // Menandakan lampu merah, mesin belum boleh berjalan!
+
+            2️⃣ Lihat Warna Lampu (Pengecekan)
+                Menggunakan gerbang logika (if atau while) untuk menyuruh mesin melihat ke arah tiang lampu tersebut sebelum bertindak.
+                if(isLoadingDone === true){
+                    console.log("Jalan aman, eksekusi tombol.");
+                }else{
+                    console.log("Tunggu dulu, masih merah.");
+                }
+
+            3️⃣ Atur Warna Lampu (Mengubah Status)
+                Harus ada trigger (pemicu) dari kejadian lain yang menekan tombol saklar untuk mengubah isi wadah tersebut, agar mesin tidak menunggu selamanya.
+                // Sebuah kejadian terjadi (misal: server berhasil mengirim data)
+                isLoadingDone = true; // Saklar ditekan! Lampu berubah Hijau.
+        */
+
+        // 1. PASANG TIANG LAMPU: Awalnya popup pasti belum muncul (Merah)
+        let isPopupReady = false;
+        document.writeln(`[Sistem] Mengklik dokumen untuk membuka pop up <br>`);
+
+        // SIMULASI WAKTU TUNGGU: Kita anggap web butuh 5 detik memuat halaman
+        let waitSecond = 0;
+
+        // LIHAT WARNA LAMPU: Selama lampu MASIH MERAH (false), mesin terus menunggu
+        while (isPopupReady === false) {
+            waitSecond++;
+            document.writeln(`Waktu tunggu ${waitSecond} <br>`);
+
+            // ATUR WARNA LAMPU: Jika sudah 5 detik, kita anggap popup sudah muncul di layar!
+            if (waitSecond === 5) {
+                document.writeln(`Waktu tunggu selesai <br>`)
+                isPopupReady = true;
+            }
+        }
+        // Karena lampu sudah hijau, loop berhenti, dan mesin dengan aman mengeklik tombol
+        document.writeln("[Sistem] Tombol 'Setujui' berhasil diklik pada popup. <br>");
+
+
+        let isAntivirusSafe = false; // Pasang tiang lampu
+        let virusFound = 0;
+
+        if(!virusFound){ 
+            isAntivirusSafe = true; // Atur warna lampu
+        }
+        
+        if (isAntivirusSafe) { // Lihat warna lampu
+            document.writeln(`Sistem aman. Memulai unduhan arsip.`);
+        } else {
+            document.writeln(`Unduhan diblokir, menemukan ancaman.`);
+        }
+    </script>
+</body>
+</html>

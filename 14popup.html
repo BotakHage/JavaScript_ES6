@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopUp</title>
+</head>
+<body>
+    <script>
+        // Alert, Pengumuman Satu Arah (Laporan Mutlak)
+        let totalFile = 100;
+        let gagal = 2;
+        if(gagal === 0) {
+            alert(`Proses Selesai! Seluruh ${totalFile} arsip berhasil diubah namanya.`);
+        } else {
+            alert(`PERHATIAN: Proses selesai, namun ada ${gagal} file yang gagal diproses. Harap periksa konsol (F12).`);
+        }
+
+        // Confirm, Rem Darurat / Persimpangan (Ya atau Tidak)
+        let namaDokumen = "Laporan_Keuangan_2021.pdf";
+        // confirm() akan menghasilkan true atau false
+        let confirmDelete = confirm(`TINDAKAN DESTRUKTIF: Anda yakin ingin memusnahkan arsip "${namaDokumen}" secara permanen? Tindakan ini tidak bisa dibatalkan.`);
+        if(confirmDelete) {
+            alert(`Memulai proses pemusnahan dokumen di server...`)
+        } else {
+            alert(`Aksi dibatalkan. Dokumen tetap aman.`)
+        }
+
+        // Prompt, Meminta Input Data Cepat
+        let bulanPilihan = prompt("Masukkan angka bulan untuk arsip yang ingin ditarik (Contoh: 05 untuk Mei):","05");
+        if(bulanPilihan === null) {
+            alert(`Proses penarikan data dibatalkan oleh pengguna!`);
+        } else {
+            if(!bulanPilihan){
+                alert(`Gagal: Input tidak boleh dibiarkan kosong`);
+            } else {
+                let bulanAngka = Number(bulanPilihan);
+                if(isNaN(bulanAngka)){
+                    alert(`Gagal: Anda harus memasukkan angka, bukan huruf!`);
+                } else {
+                    document.writeln(`Mulai mencari dan menarik arsip untuk bulan ke-${bulanAngka}...`);
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

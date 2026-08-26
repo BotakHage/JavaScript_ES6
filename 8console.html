@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console</title>
+</head>
+<body>
+    <script>
+        /*
+        Logging ialah mekanisme untuk menampilkan/mengeprint 
+        tulisan tetapi bukan pada tampilan web, melainkan di 
+        console. Logging biasa digunakan untuk debugging, yaitu 
+        proses untuk mencari bug/masalah yang ada pada kode.
+        */
+
+        // 1️⃣ console.debug()
+        /*
+        digunakan untuk memberitahu informasi sekecil mungkin 
+        (mirip info, tapi berbeda dan tingkatan debug berada 
+        dibawah info).
+        */
+        let namaFile = "Surat Keputusan.pdf";
+        console.debug("Mengecek karakter ke-5: '' (Spasi Terdeteksi)");
+
+        // 2️⃣ console.info() & console.log digunakan untuk memberitahu informasi
+        console.info("Memulai proses unggah untuk dokumen: " + namaFile);
+        console.log("Status koneksi server: Terhubung");
+
+        // 3️⃣ console.warn() digunakan untuk memberitahu informasi 
+        // peringatan
+        let tanggalFile = "";
+        if (tanggalFile === ""){
+            tanggalFile = "02-06-2026";
+            console.warn(`Perhatian: Dokumen ${namaFile} tidak punya tanggal. Sistem menggunakan tanggal hari ini.`);
+        };
+
+        // 4️⃣ console.error() digunakan untuk memberitahu informasi
+        // error
+        let ukuranFile = 10;
+        if (ukuranFile > 5) {
+            console.error(`GAGAL UNGGAH: Ukuran dokumen ${namaFile} terlalu besar (10 MB). Batas maksimal 5 MB!`)
+        };
+
+        // 5️⃣ console.table() digunakan untuk memberitahu informasi
+        // dalam bentuk tabel
+        let rekapHarian = [
+            { No: "ARS-001", Nama: "Laporan Kinerja", Status: "Sukses" },
+            { No: "ARS-002", Nama: "Surat Cuti", Status: "Gagal (Ukuran Besar)" },
+            { No: "ARS-003", Nama: "Nota Dinas", Status: "Sukses" }
+        ];
+        console.table(rekapHarian);
+    </script>
+</body>
+</html>

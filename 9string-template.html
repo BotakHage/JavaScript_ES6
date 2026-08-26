@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Template</title>
+</head>
+<body>
+    <script>
+        /* 
+        Membuat cetakan (Template) untuk sebuah teks (String).
+        */
+        let name = "Ahmad Fauzi";
+        const template = `Name: ${name} </p>`;
+        document.writeln(template);
+
+        /*
+        Substitusi pada variabel adalah proses di mana 
+        JavaScript secara otomatis "mengganti" tanda 
+        kurawal ${} dengan nilai asli yang ada di 
+        dalam variabelnya sebelum kalimat tersebut dicetak.
+        */
+        const substitusi = `My name is ${name} </p>`;
+        document.writeln(substitusi);
+
+        /* Expression di String Template, bisa  
+        memasukkan kondisi sederhana ke dalam string 
+        template.
+        */
+        const nilai = 80;
+        const expression = `Nama: ${name}, Lulus: ${nilai > 75} </p>`;
+        document.writeln(expression)
+
+        /* Multiline String, bisa dengan mudah 
+        memberikan enter/line baru di dalam string 
+        template ini. 
+        */
+        const multiline = `Ah
+mad
+Fa
+u
+zi`;
+        document.writeln("<pre>");
+        document.writeln(multiline);
+        document.writeln("</pre>");
+
+    </script>
+</body>
+</html>

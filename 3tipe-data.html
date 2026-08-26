@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipe Data</title>
+</head>
+<body>
+    <script>
+        // 1️⃣ Tipe Data Number
+        document.writeln( 100 ); // Pecahan
+        document.writeln("</br>");
+        document.writeln( 100.123 ); // Desimal (basis 10)
+
+        /* 
+        JavaScript mendukung berbagai basis angka: basis 10 (desimal),
+        basis 2 (biner), basis 8 (oktal), dan basis 16 (heksadesimal) 
+        */
+        document.writeln("</br>");
+        document.writeln( 0x7B ) // Heksadesimal (basis 16)
+        document.writeln("</br>");
+        document.writeln( 0b1011010 ); // Biner (basis 2)
+        document.writeln("</br>");
+        document.writeln( 0o021 ); // Octal (basis 8)
+        document.writeln("</br>");
+
+        document.writeln("<hr>");
+
+        // 2️⃣ Tipe Data Boolean
+        document.writeln(true); // Benar
+        document.writeln("</br>");
+        document.writeln(false); // Salah
+        document.writeln("</br>");
+
+        document.writeln("<hr>");
+
+        // 3️⃣ Tipe Data String
+        document.writeln(""); // String Kosong
+        document.writeln("</br>");
+        document.writeln("Ahmad Fauzi Ariyanto")
+        document.writeln("</br>");
+        document.writeln("Kerja " + "di " + "Jepang"); // Penggabungan String dengan tanda plus (+)
+        document.writeln("Tahun " + 2026); // Penggabungan String dengan Number, merubah number menjadi String
+        document.writeln("</br>");
+
+        /* 
+        Escape Sequence (eS), karakter khusus untuk menampilkan 
+        simbol-simbol atau perintah-perintah yang tidak 
+        dapat ditulis secara langsung dalam kode JavaScript
+        */
+        document.writeln("<textarea cols='100' rows='10'>");
+            document.writeln("Ahmad \nFauzi \nAriyanto"); // eS Enter (\n)
+            document.writeln("\\Home \\Fauzi"); // eS Garis miring (\\)
+            document.writeln("\"Ahmad Fauzi Ariyanto\""); // eS Petik dua (\")
+            document.writeln("\'Ahmad Fauzi Ariyanto\'"); // eS Petik satu (\')
+        document.writeln("</textarea>")
+
+        /* 
+        JavaScript memiliki 8 jenis (tipe data) utama untuk isi sebuah wadah (variabel).
+        Terdiri dari 2 kelompok: 7 Tipe Data Primitif dan 1 Tipe Data Object.
+            1. Tipe Data Primitif 
+            Disebut primitif karena nilainya tunggal, paling dasar, dan murni.
+            Sifat utama primitif adalah immutable (nilainya sendiri tidak bisa 
+            dimodifikasi/diotak-atik, jika ingin mengubahnya, program harus 
+            menggantinya dengan nilai yang benar-benar baru).
+            - Numeric     : Number, BigInt
+            - Non-Numeric : String, Boolean, Undefined, Null, Symbol
+
+            2. Tipe Data Object
+            Dipisah dari primitif karena sifatnya kompleks dan bisa menampung banyak 
+            jenis data sekaligus. Bisa juga karena struktur dan perilakunya yang    
+            berbeda secara drastis. Sifatnya mutable (bagian dalamnya bisa ditambah, 
+            dikurangi, atau diubah-ubah tanpa harus mengganti keseluruhan object 
+            tersebut).
+            - Macam-macam tipe object: Object (biasa), Array, Function, Date, Regex, Set, Map
+        */
+
+    </script>
+</body>
+</html>

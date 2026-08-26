@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break Continue</title>
+</head>
+<body>
+    <script>
+        /*
+        🔹 break (Hancurkan: Mesin perulangannya hancur, selesai, tamat. Lanjut ke sisa program di bawah loop. 
+        break ketika: Kamu membuat fitur "Pencarian" (Search). Begitu barangnya ketemu, langsung matikan perulangan untuk menghemat performa aplikasi.
+
+        🔹 continue (Next): Persis seperti menekan tombol "Next Song" di Spotify. Lagu yang sekarang dihentikan, langsung lompat mainkan lagu berikutnya.
+        continue ketika: Kamu sedang memproses banyak data, tapi ada beberapa data "kotor" atau tidak valid yang ingin kamu abaikan tanpa harus menghentikan seluruh proses (Data Filtering).
+
+        */
+
+        // Continue
+        const daftarDokumen = [
+            {nama: "Surat_Tugas", status: "Final"},
+            {nama: "Surat_Dinas", status: "Draft"},
+            {nama: "Surat_Perintah", status: "Final"},
+            {nama: "Laporan_Awal", status: "Draft"},
+            {nama: "Memo_Internal", status: "Final"},
+        ]
+        for (let i=0;i<daftarDokumen.length;i++){
+            let dokumen = daftarDokumen[i];
+            if (dokumen.status === "Draft"){
+                document.writeln(`[SKIPPED] Dokumen ${dokumen.nama} masih draft. <br>`);
+                continue;
+            }
+            let namaBaru = dokumen.nama.toUpperCase();
+            document.writeln(`[PROCESSED] Berhasil mengubah nama menjadi: ${namaBaru} <br>`)
+        }
+
+        // Break
+        const ribuanArsip = ["Arsip_01", "Arsip_02", "Arsip_03", "Arsip_04", "Arsip_Rahasia", "Arsip_05", "Arsip_06"];
+        const targetPencarian = "Arsip_Rahasia";
+
+        for(let i=0; i < ribuanArsip.length; i++) {
+            if(ribuanArsip[i] === targetPencarian) {
+                document.writeln(`Arsip ketemu: ${ribuanArsip[i]} di urutan ${i} <br>`);
+                break;
+            }
+        }
+
+        const targetPencarianArsipPalsu = "Arsip_Palsu";
+        let isKetemu = false;
+
+        for(let i = 0; i < ribuanArsip.length; i++) {
+            if(ribuanArsip[i] === targetPencarianArsipPalsu){
+                document.writeln(`Arsip ketemu: ${ribuanArsip[i]} di urutan ${i} <br>`);
+                isKetemu= true;
+                break;
+            } 
+        }
+        if (isKetemu === false) {
+            document.writeln("Maaf, Arsip tidak ditemukan <br>");
+        }
+
+
+
+
+        for (let i = 1; i <= 7; i++) {
+            if(i === 3) continue; // Jika tugas di dalam if hanya terdiri dari TEPAT SATU baris perintah, maka kurung kurawal {} boleh dibuang.
+            if(i === 6){
+                document.writeln(`Di break`);
+                break;
+            }
+            document.writeln(`Perhitungan ke-${i} <br>`)
+        }
+    </script>
+</body>
+</html>

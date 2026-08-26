@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loop</title>
+</head>
+<body>
+    <script>
+        /*
+        Mengulang eksekusi kode yang sama, agar tidak perlu capek mengetiknya berkali-kali.
+
+        for(init statement ; kondisi ; post statement){
+         // block perulangan
+        }
+        
+        • init statement: dieksekusi diawal, dan hanya sekali.
+        • kondisi: pengecekan kondisi berulang kali di setiap perulangan. Kalo true berjalan, kalo false kode berhenti.
+        • post statement: dieksekusi setiap kali diakhir perulangan.
+
+        alur nya dari init statement berjalan,
+        kemudian di cek kondisi, apabila true maka perulangan terjadi atau apabila false maka kode berhenti,
+        kode melakukan perulangan sekali, 
+        setelah itu masuk ke post statement, 
+        lalu masuk kondisi kembali sampai nilai kondisi berubah menjadi false.
+
+        */
+
+        for(let i=0;i<=5;i++){
+            document.writeln(`Hai number ${i} </p>`);
+        }
+
+
+        const arr = [
+            "Apple", "Banana", "Orange"
+        ]
+        for (let i=0;i<arr.length;i++){
+            let buah = arr[i];
+            document.writeln(`Ini buah ${buah} <p/>`);
+        }
+
+    </script>
+</body>
+</html>

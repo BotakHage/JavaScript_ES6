@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undefined</title>
+</head>
+<body>
+    <script>
+        // @ts-check --> Semacam eslint nya vscode, tanpa install apapun.
+
+        /*
+        Undefined merupakan sebuah tipe data atau kata kunci di Javascript. 
+        Tidak bisa membuat variable menggunakan kata undefined.
+        Pendeklarasian sebuah variable yang belum memiliki nilai, itu dinamakan undefined.
+        */
+
+        // undefined dalam variable
+        let exp; // undefined
+        if(exp === undefined) {
+            document.writeln(`UNDEFINED variable`);
+        } else {
+            document.writeln(`DEFINED variable`);
+        }
+
+        document.writeln(`</p>`);
+
+        // undefined dalam mengkases index yang tidak ada di dalam array, otomatis menghasilkan undefined
+        const exp1 = ["Ahmad", "Fauzi"];
+        if(exp1[2] === undefined) {
+            document.writeln(`UNDEFINED array`);
+        } else {
+            document.writeln(`DEFINED array`);
+        }
+
+        document.writeln(`</p>`);
+
+        // undefined dalam mengkases property/key yang tidak ada di dalam object, otomatis menghasilkan undefined
+        const exp2 = {
+             name: "Ahmad" // Kalo baris ini aktif, maka akan berubah menjadi defined
+        };
+        if(exp2.name === undefined) {
+            document.writeln(`UNDEFINED object`);
+        } else {
+            document.writeln(`DEFINED object`);
+        }
+
+        document.writeln(`</p>`);
+
+        /*
+        Penggunaan nyata dari tipe data undfined, 
+        untuk mengecek suatu kondisi apakah lengkap atau tidak
+        */
+        let time;
+        const arsipSIKN = {
+            pt: "PT. Accenture",
+            category: "Surat Pemberi Alamat Kerja",
+            time, // berisi undefined juga
+            ttd: undefined
+        }
+
+        let isDataValid = true;
+        for(let kunci in arsipSIKN) {
+            let isi = arsipSIKN[kunci];
+
+            if(!isi) {
+                document.writeln(`[ERROR] Data pada kolom '${kunci}' masih kosong! <br>`);
+                isDataValid = false;
+            }
+        }
+
+        if(isDataValid) {
+            document.writeln("STATUS: Seluruh kelengkapan dokumen VALID. Memulai unggah ke SIKN...");
+        } else {
+            document.writeln("STATUS: DITOLAK. Harap lengkapi isian yang kosong sebelum mengunggah.");
+        }
+
+    </script>
+</body>
+</html>

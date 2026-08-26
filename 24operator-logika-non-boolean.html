@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Logika Non Boolean</title>
+</head>
+<body>
+    <script>
+        /*
+        🔹 || (Sihir Kesempatan Kedua): Mengambil yang Truthy pertama. Sangat berguna untuk menyiapkan "Plan B" jika data yang datang kosong/falsy.
+        🔹 && (Sihir Pemutus Arus): Berhenti di Falsy pertama. Jika berhasil sampai ujung, ambil yang terakhir. Sangat berguna untuk "Hanya tampilkan/jalankan kode ini JIKA syarat di kirinya valid."
+        */
+
+        /*
+        🔹Operator OR (||)
+        • Operator logika OR (||), membaca dari kiri ke kanan. 
+        • Operator ini akan mengambil nilai pertama yang truthy. 
+        • Jika tidak ada satupun yang bernilai truthy, maka yang terakhir yang akan diambil
+        */
+        document.writeln("" || "Hai");
+
+        // [PROFIL PENGGUNA WEB]
+        // Pengguna mengosongkan kolom nama panggilan saat mendaftar
+        let namaDariDatabase = ""; 
+
+        // Sistem menggunakan || untuk mencari Truthy pertama.
+        // "" adalah Falsy, jadi ia bergeser ke kanan dan mengambil "Brave Adventurer" (Truthy).
+        let namaTampilan = namaDariDatabase || "Brave Adventurer";
+
+        document.writeln(`${namaTampilan}!`); 
+        // Output: Brave Adventurer!
+
+        document.writeln("</p>");
+
+        /*
+        🔹 Operator AND (&&)
+        • Operator logika AND (||), membaca dari kiri ke kanan. 
+        • Operator ini akan mengambil nilai pertama yang falsy. 
+        • Jika tidak ada satupun yang bernilai falsy, maka yang terakhir yang akan diambil
+        */
+        // [PANEL ADMIN WEB]
+        // Kita hanya ingin menampilkan tombol "Hapus Database" JIKA 
+        // pengguna yang sedang login memiliki hak akses "Admin".
+        let rolePengguna = "Admin"; 
+
+        // --- GAYA MODERN (Menggunakan &&) ---
+        // Jika bagian kiri Truthy, mesin akan mengeksekusi dan mengambil bagian kanan.
+        // Jika bagian kiri Falsy, mesin akan langsung putus arus (berhenti) secara diam-diam.
+        let tombolUI = (rolePengguna === "Admin") && "<button>Hapus Arsip</button>";
+
+        console.log(tombolUI);
+        // Output: <button>Hapus Arsip</button>
+        // (Karena kiri adalah Truthy, maka ia mengambil ujung kanannya).
+
+        // --- SIMULASI JIKA STAF BIASA YANG LOGIN ---
+        let roleStaf = "Viewer";
+        let tombolStaf = (roleStaf === "Admin") && "<button>Hapus Arsip</button>";
+
+        console.log(tombolStaf);
+        // Output: false 
+        // (Karena kiri Falsy, mesin langsung berhenti memancarkan false, 
+        // sehingga tombol tidak pernah dimunculkan di layar web).
+    </script>
+</body>
+</html>

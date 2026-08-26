@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>With Statement</title>
+</head>
+<body>
+    <script>
+        /*
+            With statement merupakan fitur yang digunakan untuk menurunkan sebuah scope data.
+            Tetapi di industri modern, penggunaan with diharamkan. Karena Kebingungan Identitas (Scope Ambiguity) dan juga Sangat Lambat (Performa Anjlok)
+
+            Ada pengganti yang bisa digunakan selain With, yaitu Destructuring Assignment (Membongkar Objek) -> best practices.
+
+            🔹WITH = Wajib dihindari.
+            🔹Jika kamu ingin jalan pintas untuk mengakses isi Object, gunakan Destructuring const { namaProperti } = objek.
+
+            Melakukan destructuring sebenarnya sama saja seperti mendeklarasikan sebuah wadah variable
+            Destructuring -> const {nomor, status} = draft;
+            Deklarasi Variable -> const nomor = draft.nomor;
+                                    const status = draft.status;
+        */
+
+        const draft = {
+            nomor: "SRK-001",
+            status: "Approved"
+        }
+        // MASA LALU: Menggunakan 'with'
+        with (draft) {
+            // Tidak perlu lagi mengetik draf.nomor atau draf.status
+            document.writeln(`${nomor}`);
+            document.writeln(`${status}`);
+        }
+
+
+        const draf = { 
+            nomor: "SRK-001", 
+            status: "Approved",
+            pengirim: "Divisi IT"
+        };
+        // MODERN: Destructuring (aman & cepat)
+        // "Tolong keluarkan 'nomor' dan 'status' dari dalam draf, jadikan variabel mandiri"
+        const {nomor, status} = draf;
+        // Sekarang kita bisa langsung memanggilnya tanpa draf.nomor
+        document.writeln(`Nomor dokumen: ${nomor}`); 
+        document.writeln(`Status saat ini: ${status}`);
+
+
+        const dataStaf = {
+            namaLengkap: "Budi Santoso",
+            jabatan: "Arsiparis Utama",
+            divisi: "Kearsipan",
+            idPegawai: "NIP-8829"
+        };
+        const {namaLengkap, jabatan} = dataStaf;
+        document.writeln(`Profil: ${namaLengkap} menjabat sebagai ${jabatan}`);
+    </script>
+</body>
+</html>

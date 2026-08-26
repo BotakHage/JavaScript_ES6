@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Of</title>
+
+    <style>
+        .badge {
+            background-color: red;
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /*
+            for of hanya bisa digunakan untuk data yang bersitfat iterable (array, string, dll)
+
+            • for in, mengambil property/index nya terlebih dahulu
+            • for of, langsung mengambil isi nilai dari array
+
+            🔹Gunakan for...of kapan pun kamu ingin memproses seluruh isi Array dari awal sampai akhir, dan kamu tidak membutuhkan nomor urutnya.
+            🔹Tetap gunakan for biasa (let i = 0...) JIKA: Kamu butuh tahu ini urutan ke berapa (butuh angka indeksnya), atau kamu ingin melompat (misalnya membaca dua langkah sekaligus i += 2), atau kamu membaca dari belakang ke depan.
+            🔹for of tidak bisa digunakan untuk object (apabila dipaksakan, maka akan terjadi error)
+
+            
+        */
+
+        const daftarDokumen = ["Laporan_Q1.pdf", "Revisi_Kontrak.docx", "Memo_Internal.txt"];
+
+        // Mesin membaca: "Untuk setiap (isi) dokumen DARI (of) daftarDokumen..."
+        for (const value of daftarDokumen) {
+
+            // Wadah 'value' langsung berisi datanya, BUKAN angka 0, 1, 2!
+            document.writeln(`Sedang mengunduh: ${value} <br>`)
+        }
+
+
+        const names = "Ahmad Fauzi";
+        for (const name of names) {
+            document.writeln(`${name} <br>`)
+        }
+
+
+        const tujuanSurat = ["Jakarta", "Bandung", "Surabaya", "Medan"];
+        // Sangat bersih, tidak ada urusan dengan .length atau [i]
+        for (const kotaTujuan of tujuanSurat) {
+            document.writeln(`Kota tujuan surat: <span class="badge">${kotaTujuan} </span><br>`)
+        }
+
+
+        const ipBlacklist = [
+            "192.168.1.1",
+            "10.0.0.5",
+            "172.16.0.8"
+        ]
+        for (const blacklist of ipBlacklist) {
+            document.writeln(`BLOKIR AKSES DARI IP: ${blacklist} <br>`)
+        }
+
+
+        const logAktivitas = [
+            { user: "Admin_Sistem", aksi: "Login", status: "Success" },
+            { user: "Staf_Arsip", aksi: "Upload_Dokumen", status: "Success" },
+            { user: "Unknown_IP", aksi: "Hapus_Database", status: "Failed" },
+            { user: "Staf_Arsip", aksi: "Logout", status: "Success" }
+        ];
+        for (const log of logAktivitas) {
+            console.log(log) // Mengecek object yang ada di dalam array menggunakan console.log (best practices)
+            if(log.status === "Success") { // dengan for of, langsung bisa akses isi object, log.status, log.user dan log.aksi
+                document.writeln(`Catatan: ${log.user} berhasil melakukan ${log.aksi} <br>`);
+            } else {
+                document.writeln(`ALARM! Percobaan ilegal oleh ${log.user} pada aksi ${log.aksi} <br>`);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

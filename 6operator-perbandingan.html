@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Perbandingan</title>
+</head>
+<body>
+    <script>
+        /*
+        Operator Perbandingan ialah cara untuk membandingkan 2 buah data. Dengan 
+        output yang dihasilkan berupa nilai Boolean, yaitu true (1) atau false 
+        (0)
+        */
+
+        // (>) Lebih dari.
+        let result = 5 > 10;
+        document.writeln(`5 > 10 = ${result} </p>`);
+
+        // (<) Kurang dari.
+        result = 5 < 10;
+        document.writeln(`5 < 10 = ${result} </p>`);
+
+        // (>=) Lebih dari sama dengan.
+        result = 10 >= 10;
+        document.writeln(`10 >= 10 = ${result} </p>`);
+
+        // (<=) Kurang dari sama dengan.
+        result = 10 <= 20;
+        document.writeln(`10 <= 20 = ${result} </p>`);
+
+        // (==) Sama dengan. Hanya mengecek nominal nya saja.
+        result = 10 == "10";
+        document.writeln(`10 == "10" = ${result} </p>`);
+
+        // (===) Sama dengan dan sama tipe. Mengecek nominal dan tipe data nya.
+        result = 10 === "10";
+        document.writeln(`10 === "10" = ${result} </p>`);
+
+        // (!=) Tidak sama dengan. Hanya mengecek nominal nya saja.
+        result = 10 != 10;
+        document.writeln(`10 != 10 = ${result} </p>`);
+
+        // (!==) Tidak sama dengan atau Tidak sama tipe. Mengecek nominal dan tipe data nya.
+        result = 10 !== "10";
+        document.writeln(`10 !== "10" = ${result} </p>`);
+    </script>
+</body>
+</html>

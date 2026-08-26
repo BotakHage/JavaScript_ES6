@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Parameter (Default & Optional)</title>
+</head>
+<body>
+    <script>
+        /*
+        🔹Default Parameter (Nilai Cadangan Otomatis)
+        function pesanKopi(jenis, ukuran = 'Reguler') -> Apabila fungsi dipanggil hanya dengan parameter/argumen jenis, 
+        secara otomatis nilai ukuran akan di isi oleh nilai default yaitu Reguler.
+        - Dalam dunia industri, konsep ini sangat sering digunakan untuk fitur pagination, 
+        menampilkan page 1 secara default saat pertama kali.
+
+        🔹Optional Parameter (Parameter Opsional/Sunnah)
+        function cetakResi(menu, catatan) {
+            let struk = `Menu: ${menu}`;
+
+            // Mesin mengecek apakah ada catatan?
+            if(catatan !== undefined) { -> Pentingnya pengecekan untuk menghindari data yang dikirm null atau string kosong, yang akan membuat error. (Berlaku juga dalam default parameter)
+                // Jika ada, tambahkan ke dalam struk
+                struk = struk + ` | Catatan: ${catatan}`;
+            }
+            // Jika tidak ada (undefined), logika if dilewati, struk tetap aman
+            return struk;
+        }
+        Catatan disini bersifat optional, mau diisi atau tidak. 
+        Apabila tidak diisi juga tidak masalah (semua normal dan aman)
+
+        🔹The Null Trap
+        function sapa(nama = "Anonim") {
+            return `Halo ${nama}!`;
+        }
+
+        console.log( sapa() );          // Hasil: Halo Anonim! (Karena undefined)
+        console.log( sapa(undefined) ); // Hasil: Halo Anonim!
+
+        // JEBAKANNYA DI SINI:
+        console.log( sapa(null) );      // Hasil: Halo null! (Bukan Anonim!)
+        console.log( sapa("") );        // Hasil: Halo !     (Bukan Anonim!)
+
+        Maka dari itu sebaiknya gunakan pengecekan manual (if (!nama)) jika ingin benar-benar aman dari segala jenis nilai Falsy yang masuk.
+
+        */
+
+        const cariArsip = (kataKunci, tahun = 2026, isRahasia) => {
+            let hasil = "Mencari "+ kataKunci + " tahun " + tahun;
+
+            if(isRahasia === true){
+                hasil = hasil + `Mode Rahasia`;
+            }
+            return hasil;
+        }
+
+        console.log(cariArsip("Surat Cuti"));
+        console.log(cariArsip("Laporan Keuangan", 2024));
+        console.log(cariArsip("Data Pegawai", 2025, true));
+    </script>
+</body>
+</html>

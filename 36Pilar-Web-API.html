@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Pilar Web API</title>
+</head>
+<body>
+    <script>
+        /**
+        1️⃣ DOM (Document Object Model) - Manipulator Realita
+        DOM merupakan representasi hidup (berbentuk pohon/objek) yang bisa 
+        dimanipulasi oleh Javascript secara real-time.
+        🔻 Anatomi Kekuatan DOM
+        Kekuatan DOM ada 3 tahapan: Cari, Ubah dan Ciptakan
+            1. Mencari Element (selectors)
+            Untuk mengubah sesuatu, kita harus menangkap nya dulu. Dengan menggunakan radar pencarian modern:
+            ● document.querySelector(".kelas-css"): Menangkap satu elemen pertama yang cocok. Sangat presisi.
+            ● document.querySelectorAll("input"): Menangkap semua elemen yang cocok dan memasukkannya ke dalam Array (NodeList).
+
+            2. Mengubah Elemen (Manipulation)
+            Setelah ditangkap, elemen itu menjadi Objek biasa. Kita sudah bisa mengubah isi atau tampilannya.
+            ● elemen.textContent = "Data Baru": Mengganti teks dengan aman (karena hanya teks murni).
+            ● elemen.innerHTML = "<b>Tebal</b>": Menyuntikkan struktur HTML baru ke dalamnya.
+            ● elemen.classList.add("hidden"): Memanipulasi CSS secara instan.
+
+        2️⃣ Event Handlers - Sistem Saraf Interaktivitas
+        Jika DOM adalah benda fisiknya, maka Event Handlers adalah sistem saraf yang membuatnya hidup dan bereaksi.
+        Halaman web modern bereaksi terhadap ratusan event setiap detiknya: pergerakan mouse, guliran layar, dan ketukan keyboard.
+        🔻 Anatomi Event Handlers
+        Sebuah Higher-Order Function (HOF) yang menerima dua parameter: "Nama Kejadian" dan "Fungsi Reaksi (Callback)".
+            1. Event Object (e atau event)
+            Setiap kali sebuah kejadian terjadi, JavaScript otomatis membuat "Laporan Investigasi" berupa Objek dan melemparkannya ke dalam 
+            fungsi reaksi kita. Objek ini berisi data: tombol apa yang ditekan, di koordinat mana mouse berada, 
+            dan elemen apa yang diklik (e.target).
+
+            2. Mencegah Kiamat Kecil (e.preventDefault())
+            Tombol Submit di form HTML secara bawaan akan langsung mengirim data dan me- refresh halaman. 
+            Ini sering menghancurkan proses otomatisasi kita. preventDefault() menghentikan aksi bawaan tersebut.
+
+        3️⃣ Asynchronous (Fetch API) — Sang Portal Dimensi
+        JavaScript pada dasarnya adalah sistem Single-Threaded — ia hanya bisa mengerjakan satu tugas dalam satu waktu.
+        Jika JavaScript disuruh mengambil jutaan data arsip dari server pemerintah, sistemnya akan freeze (membeku) 
+        total sampai data itu tiba. Di sinilah Asynchronous (Proses Tak Sinkron) masuk sebagai penyelamat.
+        🔻Anatomi Asynchronous
+        Kita tidak membiarkan alur utama (Main Thread) membeku. 
+        Kita mendelegasikan tugas berat itu ke "Pekerja Latar Belakang".
+            1. Promises (Janji)
+            Saat kita meminta data ke server, server tidak langsung memberikan data, melainkan memberikan Promise (Janji). Janji ini bisa:
+            ● Pending (Sedang diproses / Kurir di jalan)
+            ● Fulfilled (Berhasil / Paket tiba)
+            ● Rejected (Gagal / Alamat tidak ditemukan)
+
+            2. async dan await
+            Ini adalah sintaks modern (ES8) untuk membaca Promise agar kodenya terlihat seperti membaca buku (sinkron), 
+            padahal di balik layar ia bekerja secara tak sinkron.
+        */
+
+
+        /**🔺Contoh DOM pencarian form input dan mengisi data nya */
+        // 1. MENCARI: Menangkap kotak input berdasarkan ID atau Kelas-nya
+        const inputNomorSurat = document.querySelector("#nomor-surat");
+        const inputTanggal = document.querySelector(".tgl-arsip");
+
+        // 2. MENGUBAH: Menyuntikkan nilai (value) ke dalam wadah tersebut
+        // (Menggunakan metode yang jauh lebih cepat daripada mengetik manual)
+        if (inputNomorSurat && inputTanggal) {
+            inputNomorSurat.value = "SRK-2026/IT/099";
+            inputTanggal.value = "2026-07-21";
+
+            // Memberi warna latar hijau sebagai indikator visual script berhasil jalan
+            inputNomorSurat.style.backgroundColor = "#e8f5e9";
+        }
+
+
+        /**🔺Contoh EventHandlers mencegat tombol "Simpan Arsip" agar memunculkan konfirmasi ganda */
+        const formArsip = document.querySelector("#form-srikandi"); // Mencari tag yang memiliki atribut dengan id form-srikandi
+        // Memasang alat sadap untuk kejadian "submit", kalo ada kejadian submit terjadi maka kode dibawah akan langsung dijalankan
+        formArsip.addEventListener("submit", function(event) {
+
+            // 1. Menghentikan proses default (mengirim/transfer data/me-refresh halaman apabila submit terpanggil) terlebih dahulu
+            event.preventDefault();
+
+            // 2. Melakukan pengecekan kustom
+            const validasi = confirm("Apakah metadata sudah dipastikan benar?");
+
+            if(validasi === true) {
+                // Jika user klik OK, lanjutkan proses kirim
+                console.log("Menyimpan ke database pusat...");
+                // formArsip.submit(); // Perintah asli untuk mengirim
+            } else {
+                // Jika batal, berikan feedback visual
+                console.log("Penyimpanan dibatalkan oleh user.");
+            }
+        })
+
+
+        /**🔺Contoh Asynchronous (Fetch API) Menarik Data Tanpa Refresh
+        Skenario: User mengetik NIP, lalu script kita diam-diam menghubungi server HRD untuk mengambil nama lengkap tanpa memuat ulang web. */
+        async function cariNamaBerdasarkanNIP(nip){ // Tambahkan kata kunci 'async' di depan fungsi untuk mengaktifkan portal dimensi
+            try {
+                console.log("Sedang mencari data...");
+
+                // 'await' menghentikan SEMENTARA baris ini saja, 
+                // Membiarkan halaman web tetap lancar berinteraksi dengan user
+                const responServer = await fetch(`https://api.internal/pegawai/${nip}`);
+
+                // Cek apakah server merespon dengan benar (Status 200 OK)
+                if(!responServer.ok) { // responServer.ok ialah properti bernilai true apabila status HTTP kisaran angka 200 sampai 299
+                    throw new Error("NIP tidak ditemukan di server!");
+                }
+
+                // Mengubah paket data mentah menjadi Object (JSON)
+                const dataJSON = responServer.json();
+
+                // Memadukan Fetch dengan Pilar 1 (DOM) untuk mengubah layar
+                const wadahNama = document.querySelector("#nama_pegawai_terisi");
+                wadahNama.textContent = dataJSON.nama_lengkap; // Misal: Budi Santoso
+            }
+            catch {
+                // Jika terjadi kegagalan (server mati, internet putus)
+                console.error("Gagal menarik data", error.message);
+            }
+        }
+
+        // Memanggil fungsinya
+        // cariNamaBerdasarkanNIP("NIP-8829");
+
+    </script>
+</body>
+</html>

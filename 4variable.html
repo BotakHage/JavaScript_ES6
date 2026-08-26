@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable</title>
+</head>
+<body>
+    <script>
+        // 🔴 Variable Old way (var)
+        var fullName; // Pendeklarasian variable atau penciptaan variable pertama kali ditandai dengan let/const.
+        fullName = "Ahmad Fauzi Ariyanto"; // Mengisi value dalam variable
+        document.writeln(fullName); // Pemanggilan atau penggunaan variable
+
+        document.write("</br>");
+
+        var firstName = "Ahmad"; // Pendeklarasian Variable dengan Value
+        document.write(firstName);
+
+        document.write("<hr>");
+
+
+        // 🔵 Variable New way (let & const)
+        // Variable let bersifat mutable (bisa berubah-ubah)
+        let letFullName;
+        letFullName = "Ahmad Fauzi Ariyanto";
+        document.writeln(letFullName);
+        document.write("</br>");
+        letFullName = "Ahmad"; // Bisa merubah nilai dari let
+        document.write(letFullName);
+
+
+        document.write("</br>");
+
+
+        // Variable const bersifat immutable (tidak bisa diubah, sudah permanen/paten.)
+        const constFullName = "Ahmad Fauzi Ariyanto";
+        document.writeln(constFullName);
+        document.write("</br>");
+        // constFullName = "Ahmad"; // Tidak bisa mengubah nilai const, apabila dipaksa berubah, maka akan menyebabkan error
+        document.write(constFullName);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nullish Coalescing Operator</title>
+</head>
+<body>
+    <script>
+        /*
+        Nullist value adalah null dan undefined.
+        Nullish Operator mirip seperti ternary operator,
+        hanya saja dia khusus untuk memeriksa apakah sebuah data berisi null/undefined, 
+        yang apabila true maka akan berisi nilai default.
+        Nullish Digunakan apabila kita membutuhkan nilai cadangan saat database/API gagal mengirimkan data.
+        */
+
+        // [SISTEM PENGATURAN GUILD] 
+        // Kita menerima gulungan data profil dari Server Database.
+        const serverData = {
+            volumeMusik: 0,     // Pemain sengaja mematikan musik (Mute = 0)
+            userName: "",       // Pemain sengaja mengosongkan nama panggilannya
+            titleGuild: null,   // Pemain belum bergabung dengan guild (kosong mutlak)
+        }
+
+        // --- SKENARIO 1: Kutukan Sihir Kuno (||) ---
+        // Kita mencoba memberikan nilai bawaan/cadangan menggunakan ||
+        const volumeMusikKuno = serverData.volumeMusik || 100;
+        document.writeln(`Volume Musik Kuno: ${volumeMusikKuno}`)
+        // BENCANA! Outputnya adalah 100!
+        // Karena || melihat angka 0 sebagai kegagalan, ia mengaktifkan nilai cadangan.
+        // Telinga pemain akan meledak karena musik yang sengaja dia matikan (0) malah menjadi 100.
+
+        document.writeln("</p>")
+
+        // --- SKENARIO 2: Sihir Modern yang Presisi (??) ---
+        // Kita gunakan Nullish Coalescing untuk melindungi nilai yang valid
+        const volumeMusikBaru = serverData.volumeMusik ?? 100;
+        document.writeln(`Volume Musik Modern: ${volumeMusikBaru} </p>`)
+        // Output: 0! (Sistem menghormati pilihan angka 0 milik pemain).
+
+        const userNameCall = serverData.userName ?? "Petualang Misterius";
+        document.writeln(`Halo, ${userNameCall} </p>`);
+        // Output: Halo, ! (Sistem menghormati string kosong, tidak memaksakan "Petualang Misterius").
+
+        const guildName = serverData.titleGuild ?? "Belum Punya Guild";
+        document.writeln(`Status Guild: ${guildName} </p>`);
+        // Output: Status Guild: Belum Punya Guild
+        // (Karena titleGuild nilainya 'null', MAKA nilai cadangan BARU AKTIF beraksi).
+
+        /*
+        Nullish operator ini hanya akan memberikan nilai default ketika data nya bernilai null/undefined saja.
+        Gunakan ?? setiap kali berurusan dengan input angka, teks, 
+        atau checkbox (boolean) dari user, di mana nol (0), string kosong 
+        (""), dan mati (false) adalah pilihan yang memang sengaja mereka buat.
+        */
+    </script>
+</body>
+</html>

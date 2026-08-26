@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For In</title>
+</head>
+<body>
+    <script>
+        /*
+        for...in diciptakan secara eksklusif untuk membongkar/mengecek isi sebuah Object
+        🔹GUNAKAN for...in JIKA: Kamu ingin memeriksa, membaca, atau menyalin isi dari sebuah Object (kumpulan data yang menggunakan label/kata kunci, bukan nomor urut).
+        🔹JANGAN GUNAKAN for...in UNTUK: Membaca Array.
+        (sebenarnya bisa untuk array, namun tidak direkomendasikan)
+
+        🔺IN = INspect Object. (Membaca label/property di dalam {}).
+        🔺OF = Array OF Data. (Menarik isi langsung dari []).
+
+        Perulangan di JavaScript (seperti for...in dan for...of) memiliki sifat yang disebut Block Scope (Ruang Lingkup Blok). Oleh karena itu, mendeklarasikan variabel menggunakan const di dalam perulangan tersebut sangat aman dan justru merupakan best practice.
+        • Mesin JavaScript tidak menggunakan ulang kotak variabel yang sama di setiap putaran.
+        • Setiap kali satu putaran (iteration) selesai dieksekusi, ruang memori blok tersebut akan dihancurkan total.
+        • Pada putaran berikutnya, mesin akan menciptakan ruangan dan variabel const yang benar-benar baru. Karena wadahnya selalu baru, tidak pernah ada bentrok atau penimpaan (overwrite) data yang melanggar aturan const.
+        */
+
+        // Tipe data Object (ditandai dengan kurung kurawal {})
+        const documentDetail = {
+            id: "SRK-2026-06",
+            title: "Laporan Kerja",
+            status: "Approved"
+        }
+        // Mesin membaca: "Untuk setiap label (key) yang ada di dalam (in) object documentDetail"
+        for(const key in documentDetail){
+            // key = mengambil nama labelnya (id, title, status)
+            // documentDetail[key] = mengambil isi data nya ("SRK-2026-06, Laporan Kerja, Approved")
+            const valueKey = documentDetail[key];
+            document.writeln(`${key} dengan nilai ${valueKey} <br>`)
+        }
+
+
+        const archiveMetaData = {
+            documentNumber: "B-12345",
+            author: "System_Admin",
+            uploadDate: "2026-06-25",
+            confidentialityLevel: "High",
+            fileSize: "2.4MB"
+        }
+        document.writeln("=== Memulai Inspeksi Metadata === <br>");
+        let propertyCount = 0;
+        for(const property in archiveMetaData) {
+            propertyCount++;
+            let propertyValue = archiveMetaData[property];
+
+            document.writeln(`${propertyCount}. Property Name: ${property} | Value: ${propertyValue} <br>`);
+        }
+        document.writeln(`=== Selesai. Total ${propertyCount} properti ditemukan === <br>`);
+
+
+        const userProfile = {
+            username: "Admin Sistem",
+            role: "Super User",
+            department: "IT Division",
+        }
+
+        for(const property in userProfile){
+            const value = userProfile[property];
+            document.writeln(`Data ${property} ditemukan dengan isi ${value} <br>`);
+        }
+
+
+        // For In Array (Tidak direkomendasikan mengakses array menggunakan for in)
+        const person = ["Fauzi", "Adbul", "Tio"];
+        for (const index in person) {
+            const indexValue = person[index];
+            document.writeln(`dengan index: ${index} | value: ${indexValue} <br>`)
+        }
+
+
+        // Sistem Pengecekan Berkas Kosong
+        const drafArsip = {
+            nomorSurat: "SRK-2026/089",
+            pengirim: "Divisi IT",
+            tanggal: "28 Juni 2026",
+            kategori: "", // KOSONG!
+            status: "Draft",
+            catatanRevisi: "" // KOSONG!
+        };
+        for (const property in drafArsip) {
+            const value = drafArsip[property];
+            if(value === "") { // disini bisa menggunakan falsy (!), tetapi karena kemungkinan nya di masa depan ada penggunaan input angka dan angka 0 termasuk falsy, maka falsy itu tidak bisa/tidak berjangka panjang
+                document.writeln(`<span style="color: red;">PERINGATAN: Kolom ${property} belum diisi!</span> <br>`);
+            } else {
+                document.writeln(`Kolom ${property} aman. <br>`);
+            }
+        }
+
+    </script>
+</body>
+</html>

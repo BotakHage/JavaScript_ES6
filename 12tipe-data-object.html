@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipe Data Object</title>
+</head>
+<body>
+    <script>
+        /*
+        🔹Array -> Jika dibutuhkan sesuatu yang berurutan/berbaris secara rapi (Daftar Antrean / Kumpulan Benda yang Sama).
+        🔹Object -> Jika dibutuhkan sesuatu yang spesifik dan juga banyak (Spesifikasi / Detail dari Satu/lebih Benda).
+        */
+
+        const person = {}; // Object kosong
+
+        // Mengubah Property/Key di object menggunakan string, tidak seperti di Array yang index nya monoton hanya bisa menggunakan number.
+        person["nama"] = "Ahmad Fauzi";
+        person["alamat"] = "Parungpanjang";
+        person["umur"] = 23;
+
+        console.table(person);
+        delete person["umur"];
+
+        // Pendeklarasian Object secara langsung
+        let orang = {
+            "nama lengkap": "Ahmad Fauzi Ariyanto", // property/key nya menggunakan kutip karena memiliki dua kata.
+            alamat: "Parungpanjang",
+            umur: 23
+        }
+
+        console.table(orang);
+
+        // Mengakses property object
+        document.writeln(`Name: ${orang["nama lengkap"]} </p>`); // pemanggilan key object yang memiliki panjang 2 kata
+        document.writeln(`Alamat: ${orang.alamat} </p>`);
+        document.writeln(`Umur: ${orang.umur}`);
+
+    </script>
+</body>
+</html>

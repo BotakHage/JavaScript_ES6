@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipe Data Array</title>
+</head>
+<body>
+    <script>
+        /*
+        Array merupakan tipe data yang berisikan kumpulan data.
+        Sifat nya dinamis, dapat ditambah/dikurangi dengan mudah.
+        Mirip sebuah variabel, tetapi dapat menampung banyak data sekaligus, dengan berbagai tipe data.
+        */
+
+        let arrayKosong = [];
+
+        let arrayNama = ["Ahmad", "Fauzi", "Ariyanto"];
+        /* 
+        Array tersusun berurutan dimulai dari index ke-0 sampai seterusnya.
+        Apabila data ditambah, maka otomatis akan menempati urutan terakhir.
+        Urutan array disebut sebagai Index.
+        Ukuran panjang array ialah total dari index ke-0 sampai terakhir.
+        */
+
+        // 🔵 array.push(value) Menambah data ke Array
+        let nama = ["Ahmad"];
+        nama.push(arrayNama, "Tahun", 2026, "</p>"); 
+        /* 
+        Dengan menyebutkan variabel array yang dituju 
+        kemudian ditambah (.push), maka akan menambahkan isi dari array.
+        Bebas menambahkan jenis tipe data apapun. Dengan pemisah tanda koma.
+        */
+        document.writeln(`${nama}`);
+        console.table(nama);
+
+        let antrianArsip = ["Surat_Tugas_001.pdf"];
+        antrianArsip.push("Laporan_Kinerja.pdf", "Surat_Cuti_MasNico.pdf", "Nota_Dinas.pdf");
+        console.log(antrianArsip)
+
+        // 🔴 array.length Menghitung panjang Array
+        let totalAntrian = antrianArsip.length;
+        if (totalAntrian > 100) {
+            document.writeln(`Peringatan: Antrean arsip hari ini sangat padat ${totalAntrian} file. </p>`);
+        } else {
+            document.writeln(`Status Normal. Terdapat ${totalAntrian} arsip dalam antrean. </p>`);
+        }
+
+        // 🟠 array[index] Mengakses data Array berdasarkan index ke-berapa
+        let arsipDiproses = antrianArsip[2];
+        document.writeln(`Sedang melakukan pemindaian pada dokumen: ${arsipDiproses} </p>`)
+
+        // 🟡 array[index]= value Mengubah data Array berdasarkan index ke-berapa
+        antrianArsip[1] = "Laporan_Kinerja_April_2026.pdf"
+        document.writeln(`Nama file indeks ke-1 telah diperbarui menjadi: ${antrianArsip[1]} </p>`)
+
+        // 🟢 delete array[index] Menghapus data Array dasarkan index ke-berapa
+        /*
+        delete hanya menghapus nilai nya, tapi tidak menghapus index nya.
+        nilai index 2 terhapus, namun index 2 tetap ada dengan nilai kosong. 
+        Maka dari itu delete array jarang digunakan dan lebih memilih splice.
+        */
+        delete antrianArsip[2];
+        document.writeln(`${antrianArsip} </p>`);
+
+        // 🟣 Array Multidimensional, yaitu array didalam array. Tidak ada batasan mau dimasukkan beberapa array pun
+        let array1 = ["Tahun", 2026];
+        let array2 = ["Front-end", "Ahmad", "Fauzi", true];
+        array1.push(array2);
+        document.writeln(`${array1}`)
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Null</title>
+</head>
+<body>
+    <script>
+        /*
+        Null merupakan tipe data yang direpresentasikan sebuah data kosong, value nya ada tapi ya bernilaikan null (Beda dengan undefined).
+
+        Kalau teks dari user kosong = biarkan "".
+        Kalau server gagal mengirim data = biarkan undefined.
+        Kalau kita yang membuang data itu secara sadar = wajib pakai null.
+
+        boolean layaknya sebuah saklar,
+        null ini bersifat menghapus/penghapusan
+        */
+
+        let divisiName = "PPTKA";
+
+        let accessSet = {
+            divisiName,
+            date: "10-09-2019",
+            access: true,
+        }
+
+        accessSet.date = null; // ibarat penghapusan data
+        accessSet.access = false; // saklar
+
+        if(accessSet.date === null) {
+            document.writeln(`Data ${divisiName} dihapus tanggal nya = ${accessSet.date}`);
+        }
+
+
+    </script>
+</body>
+</html>

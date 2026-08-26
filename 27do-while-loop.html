@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do While</title>
+</head>
+<body>
+    <script>
+        /*
+        Mesin akan mengeksekusi blok kode minimal 1 kali secara mutlak, ga peduli mau itu false/true.
+        Barulah abis eksekusi sekali, code bakal nanya kondisi.
+        Pengecekan kondisi di while loop dilakukan di awal sebelum perulangan dilakukan, sedangkan di do while loop dilakukan setelah perulangan dilakukan
+
+
+        🔻 Gunakan while biasa, JIKA: Ada kemungkinan kodenya tidak 
+        perlu dijalankan sama sekali. (Misal: Jika baterai 0%, jangan nyalakan mesin).
+        🔻 Gunakan do while, JIKA: Kode wajib dieksekusi minimal satu 
+        kali untuk mengumpulkan data atau berinteraksi, sebelum memutuskan untuk lanjut atau tidak.
+        */
+
+        let count = 0;
+        do {
+            // 1. Eksekusi ini DIJAMIN berjalan minimal satu kali
+            count++;
+            document.writeln(`Current count is: ${count}`);
+        } while (count < 3); // 2. Baru dicek di sini. Jika True, kembali ke atas.
+
+        document.writeln("</p>");
+
+        let batteryLevel = 100;
+        do {
+            batteryLevel -= 15;
+            document.writeln(`Battery draining... Current level: ${batteryLevel}`);
+        } while (batteryLevel >= 50); // Kalo ini masih true, maka do akan terus berjalan
+
+    </script>
+</body>
+</html>

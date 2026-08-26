@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falsy & Truthy</title>
+</head>
+<body>
+    <script>
+        /*
+        Truthy: Memancarkan aura yang dianggap Sah/Valid (true). Pintu gerbang akan dibuka.
+        Falsy: Memancarkan aura yang dianggap Kosong/Gagal/Tidak Sah (false). Pintu gerbang tidak akan dibuka.
+
+        truthy & falsy digunakan untuk validasi data agar kode menjadi sangat bersih dan singkat.
+
+        Ke enam wujud nyata falsy (selain dibawah ini semuanya truthy)
+        1) false (Wujud asli dari False itu sendiri).
+        2) 0 (Angka nol dari jenis Number. Termasuk -0).
+        3) "" (Teks/String yang benar-benar kosong, tanpa spasi sama sekali).
+        4) null (Peti yang sengaja dikosongkan).
+        5) undefined (Ketiadaan, wadah yang belum diisi apa-apa).
+        6) NaN (Not a Number - Terjadi saat kamu memaksa operasi matematika pada jenis data yang salah, misalnya teks dikali angka).
+        */
+
+        // [SISTEM ENTRI ARSIP]
+        // Seorang staff mencoba menyimpan surat, tapi dia lupa mengisi judulnya
+        // sehingga wadah ini berisi string kosong ("") yang bernilai falsy
+        let inputJudulSurat = "";
+
+        // --- GAYA KAKU (Statis dan Panjang) ---
+        // Mengecek secara manual satu per satu
+        if (inputJudulSurat === "" || inputJudulSurat === null || inputJudulSurat === undefined) {
+            document.writeln(`Gagal: Judul surat tidak boleh kosong!`);
+        }
+
+        document.writeln(`</p>`);
+
+        // --- ✅ GAYA MODERN (Menggunakan Aura Falsy) ---
+        // Kita memanggil sihir pembalik aura menggunakan tanda seru (!)
+        // Karena "" adalah Falsy (false), dibalik oleh '!' menjadi True.
+        // Pintu peringatan pun terbuka!
+        if (!inputJudulSurat) {
+            document.writeln(`Peringatan: Harap isi judul surat sebelum menyimpan!`);
+        }
+
+        document.writeln(`</p>`);
+
+        // --- SIMULASI JIKA DATA DIISI DENGAN BENAR ---
+        inputJudulSurat = "Laporan Kinerja Bulanan";
+
+        // Karena wadah kini berisi teks, auranya adalah Truthy (true).
+        // Dibalik oleh '!' menjadi False. Pintu peringatan TIDAK terbuka.
+        if(!inputJudulSurat) {
+            document.writeln(`Peringatan: Harap isi judul surat sebelum menyimpan!`);
+        } else {
+            document.writeln(`Aman! Surat siap diproses ke dalam arsip.`);
+        }
+    </script>
+</body>
+</html>

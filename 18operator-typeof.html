@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Typeof</title>
+</head>
+<body>
+    <script>
+        /*
+        typeof adalah Scroll of Identify.
+        sebuah operator yang digunakan untuk mengintip dan memastikan jenis (tipe data) dari sebuah nilai
+
+        typeof null (Output: object)
+        null yang memiliki tipe data object merupakan sebuah bug legendaris di dalam struktur inti JavaScript.
+        */
+
+        /* [SISTEM GUDANG PUSAT] Fungsi ini bertugas memproses "Loot" (Data) 
+        yang baru saja dikirim oleh pedagang dari kota seberang (Server API).
+        Parameter 'incomingData' adalah barang misterius yang baru saja tiba.
+        */ 
+        const processItemPrice = (incomingData) => {
+            /*
+            Sang Ksatria Penjaga (typeof) menggunakan kemampuan identifikasinya 
+            untuk memeriksa 'jenis' dari data yang datang.
+            */
+            if (typeof incomingData === "number") {
+                /*
+                Jika hasil identifikasinya adalah jenis "number" (Angka),
+                maka barang ini aman. Masukkan ke dalam brankas dan hitung pajaknya!
+                */
+                const tax = incomingData * 0.1;
+                document.writeln(`Harga Valid! Pajak item ini adalah ${tax} Gold.`);
+            } else if (typeof incomingData === "string"){
+                /*
+                Jika ternyata jenisnya adalah "string" (Teks), ini mencurigakan!
+                Mungkin pedagang salah tulis resi. Kita tolak secara halus.
+                */
+                document.writeln(`Peringatan: Server mengirim teks "${incomingData}" alih-alih angka harga!`);
+            } else if (typeof incomingData === "undefined") {
+                /*
+                Jika jenisnya "undefined", berarti kotak kirimannya benar-benar kosong
+                atau pedagang lupa memasukkan barangnya.
+                */
+                document.writeln("Peringatan: Data harga tidak ditemukan sama sekali!");
+            } else {
+                // Jika jenisnya di luar ekspektasi (misalnya jenis boolean atau object)
+                document.writeln(`Bahaya: Jenis data tidak dikenali. Jenis yang dikirim: ${typeof incomingData}`);
+            }
+        }
+
+        // --- SIMULASI SAAT WEB BERJALAN MENGAMBIL DATA ---
+
+        // Skenario 1: Server mengirim data yang benar (Number)
+        processItemPrice(5000);
+        // Output: Harga valid! Pajak item ini adalah: 500 Gold.
+
+        document.writeln("</p>");
+
+        // Skenario 2: Server error dan malah mengirim pesan error dalam bentuk Teks (String)
+        processItemPrice("Server Sedang Maintenance"); 
+        // Output: Peringatan: Server mengirim teks "Server Sedang Maintenance" alih-alih angka harga!
+
+        document.writeln("</p>");
+
+        // Skenario 3: Server lupa mengirim data (Undefined)
+        let dataKosong; // Wadah ini belum diisi apa-apa (jenisnya undefined)
+        processItemPrice(dataKosong);
+        // Output: Peringatan: Data harga tidak ditemukan sama sekali!
+
+        document.writeln("</p>");
+
+        // Skenario 4: Server mengirim data boolean
+        processItemPrice(true);
+        // Output: Bahaya: Jenis data tidak dikenali. Jenis yang dikirim: boolean
+    </script>
+</body>
+</html>

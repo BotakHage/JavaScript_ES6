@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Operator</title>
+</head>
+<body>
+    <script>
+        /*
+        Ternary adalah cara untuk mempersingkat sebuah percabangan if else
+        Tidak disarankan menggunakan ternary pada sebuah nested if
+        */
+
+        // if else (tanpa ternary)
+        const nilai = 50;
+        let ucapan;
+        if(nilai >= 75){
+            ucapan = "Selamat Anda Lulus."
+        }else{
+            ucapan = "Silahkan Coba Lagi."
+        }
+        document.writeln(`<p>${ucapan}</p>`);
+
+        // if else (dengan ternary)
+        ucapan = nilai >= 75 ? "Selamat Anda Lulus." : "Silahkan Coba Lagi.";
+        document.writeln(`<p>${ucapan}</p>`);
+
+
+        // [SISTEM PROFIL GUILD] 
+        // Kita mendapat data dari server mengenai status akun seorang petualang.
+        const isAccountActive = true; 
+        const userGems = 100;
+
+        // --- GAYA ES6 (Keputusan Kilat dengan Ternary) ---
+        // Sangat elegan, langsung masukkan hasil keputusannya ke dalam wadah (variabel).
+        const statusBadge = isAccountActive ? "Class-Hijau (Aktif)" : "Class-Merah (Ditangguhkan)";
+
+        document.writeln(`<p>Status Akun: ${statusBadge}</p>`);
+
+        // --- KASUS LANJUTAN: FITUR TOMBOL UI ---
+        // Kita ingin merender teks tombol yang berbeda berdasarkan jumlah "Gems" yang dimiliki.
+        // Jika Gems cukup (>= 100), tampilkan "Beli Item". Jika kurang, tampilkan "Top Up Gems".
+        const buttonAction = userGems >= 100 ? "Beli Item Premium" : "Gems Tidak Cukup - Top Up";
+
+        document.writeln(`Teks pada Tombol UI: ${buttonAction}`);
+
+
+    </script>
+</body>
+</html>

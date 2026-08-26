@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Parameter & Spread Syntax</title>
+</head>
+<body>
+    <script>
+        /**
+        1️⃣ Rest Parameter (Mengumpulkan Data ke dalam Kotak Kardus Besar 📦)
+        Rest parameter merupakan kotak kardus, yang akan menampung sisa dari barang yang tidak tertampung sebelumnya.
+
+        2️⃣ Spread Syntax (Membongkar Isi Map Arsip 🗂️)
+        Spread syntax itu merupakan aksi "membongkar isi map" dan menaruhnya ke atas meja.
+        Sering digunakan untuk membuat copy terlebih dahulu sebelum data dimodifikasi,
+        agar data asli yang dari server/variabel penampungan tetap asli, steril dan aman.
+        */
+
+        //🔺REST PARAMETER: Menampung semua data tambahan/sisa menjadi satu array
+        function daftarArsip(kodeArsip, ...daftarDokumenLainnya) {
+            // 'kodeArsip' otomatis menerima argumen pertama: "SP-001"
+            // 'daftarDokumenLainnya' otomatis menjadi Kotak Kardus (Array)
+            // yang menampung semua argumen SISA nya: ["Surat Masuk", "SK", "Nota Dinas"]
+
+            console.log(`Kode Arsip: ${kodeArsip}`);
+            console.log(`Isi Kotak (Array): ${daftarDokumenLainnya}`);
+            console.log(`Jumlah dokumen sisa: ${daftarDokumenLainnya.length}`);
+        }
+        daftarArsip("SP-001", "Surat Masuk", "SK", "Nota Dinas");
+        /*
+        Alur data: Argumen yang diberikan ke fungsi mengalir dari kiri ke kanan. Parameter biasa
+        mengambil sesuai urutannya. Ketika bertemu parameter ...daftarDokumenLainnya, semua sisa argumen 
+        dikumpulkan menjadi array dan disimpan dalam variabel tersebut.
+        */
+
+        //🔺SPREAD PADA ARRAY: Menggabungkan dua daftar arsip tanpa mutasi
+        const arsipLama = ["SP-001", "SP-002", "SP-003", "SP-004", "SP-022"];
+        const arsipBaru = ["SP-021", "SP-023", "SP-030", "SP-032", "SP-012"];
+
+        const semuaArsip = [...arsipLama, ...arsipBaru];
+        console.log(semuaArsip);
+        // Output: nilai nya sama dan array nya hanya menjadi satu/bergabung
+        // Array lama TIDAK berubah (immutable)
+
+        // 🔺 SPREAD PADA OBJEK: Menyalin dan menambah properti
+        const arsipPegawai = {
+            nip: "198702112010011002",
+            nama: "Andi Prasetyo",
+            golongan: "III/b",
+        };
+        const arsipDenganAlamat = {
+            ...arsipPegawai,                // Bongkar semua isi object asli ke sini
+            alamat: "Jl. Merdeka No. 5",    // Tambahkan properti baru
+            golongan: "III/c",              // Timpa/Update data golongan
+        };
+        console.log(arsipDenganAlamat);
+        /*
+        Alur data: Spread mengambil elemen-elemen dari iterable (array/string/objek) dan 
+        "menyebarkannya" ke dalam konteks baru. Untuk objek, propertinya disalin sebagai pasangan
+        key-value.
+        */
+
+
+        // Spread digunakan fungsi untuk validasi.
+        // 'namaForm' adalah parameter utama, sedangkan '...fields' menampung sisanya.
+        function validasiFormulir(namaForm, ...fields) {
+            console.log("Sedang memeriksa formulir: ", namaForm);
+
+            // Karena 'fields' adalah array, maka kita bisa pakai for...of
+            for(const field of fields) {
+                if(!field) {
+                    console.log("ERROR: Ada field yang kosong!");
+                    return; // Hentikan pengecekan
+                }
+            }
+            console.log("SUKSES: Semua field sudah terisi.");
+        }
+        // TEST 3 input
+        validasiFormulir("Formulir Arsip Masuk", "Budi", "Surat", "2024");
+
+        // TEST 2 input, tapi ada yang kosong
+        validasiFormulir("Form Cepat", "", "Rudi");
+
+        /* Challenge */
+        const catatArsip = (petugas, ...daftarArsip) => {
+            document.writeln(`Petugas: ${petugas}`);
+
+            if(daftarArsip.length === 0){
+                document.writeln("Tidak ada arsip yang dicatat.");
+            }else {
+                document.writeln(`<p>Total arsip ${daftarArsip.length}</p>`);
+            }
+        }
+        const dokumenMasuk = ["Surat Undangan", "Nota Dinas"];
+        const dokumenKeluar = ["SK Bupati"];
+
+        const semuaDokumen = [...dokumenMasuk, ...dokumenKeluar];
+        catatArsip("budi", ...semuaDokumen);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optional Chaining</title>
+</head>
+<body>
+    <script>
+        /*
+        TypeError: Cannot read properties of undefined
+        terjadi ketika kode mencoba menelusuri data yang ternyata tidak ada.
+        Optional Chaining hanya bisa digunakan untuk MEMBACA atau MENGEKSEKUSI.
+        */
+
+        // ?. (Akses Properti Objek)
+        const suratMasuk = {
+            nomor: "001/A/2026",
+            pengirim: {
+                nama: "Dinas Pendidikan", // -> nested object
+                // Properti 'kontak' tidak dimasukkan oleh petugas entri data
+            }
+        }
+        // ❌ Tanpa Optional Chaining (Script mati di tengah jalan saat memproses, karena dalam object tidak terdapat properti yang dicari yaitu kontak)
+        // const emailPengirim = suratMasuk.pengirim.kontak.email;
+
+        // ✅ Wujud 1 (Menelusuri properti statis dengan aman)
+        const emailPengirim = suratMasuk.pengirim?.kontak?.email;
+        document.writeln(`${emailPengirim}`);
+        // Output: undefined (Script tetap hidup, sistem tahu email tidak ada)
+
+        document.writeln("</p>");
+
+        // ?.[] (Akses Array)
+        const arsipPenting = {
+            judul: "Laporan Keuangan",
+            sm: suratMasuk.nomor,
+            // Seharusnya ada array file lampiran, tapi ternyata null (belum diunggah)
+            lampiran: null,
+        }
+
+        // ✅ Wujud 2 (Menelusuri Index Array dengan aman)
+        // Kita mencoba mengambil file urutan pertama [0]
+        const namaFilePertama = arsipPenting.lampiran?.[0];
+        document.writeln(`${namaFilePertama} ${arsipPenting.sm}`);
+        // Output: undefined (Aman dari error)
+
+        document.writeln("</p>");
+
+        // ?.() (Mengeksekusi Fungsi)
+        const dataLaporan = {
+            id: 992,
+            status: "Draft",
+            // Fungsi validasi otomatis tidak disematkan untuk dokumen berstatus 'Draft'
+            validasiDokumen: undefined
+        }
+
+        // ❌ Bencana (Sistem akan crash: "dataLaporan.validasiDokumen is not a function")
+        // dataLaporan.validasiDokumen();
+
+        // ✅ Wujud 3 (Hanya jalankan eksekusi () jika fungsinya memang terdeteksi ada)
+        dataLaporan.validasiDokumen?.();
+        // Sistem membaca: "Karena validasiDokumen tidak ada, ya sudah batalkan eksekusi secara diam-diam."
+    </script>
+</body>
+</html>

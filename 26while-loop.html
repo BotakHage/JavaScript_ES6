@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While Loop</title>
+</head>
+<body>
+    <script>
+        /*
+        While Loop merupakan perulangan yang mirip seperti for, 
+        namun lebih sederhana (tanpa init dan post statemnet dalam parameter nya).
+
+        🔻 Gunakan for loop JIKA: Kamu tahu pasti berapa kali kode harus diulang (komputer menetapkan teerlebih dahulu berapa batas akhir yang dicapai). (Contoh: Menghitung dari 1 sampai 10, atau membaca isi Array yang sudah jelas jumlahnya).
+        🔻 Gunakan while loop JIKA: Kamu tidak tahu berapa kali harus mengulang (komputer tidak tahu batas akhir nya, dan saat berjalan pun masih bisa bertambah), tapi kamu tahu kapan harus berhenti. (Contoh: Menarik data dari database sampai datanya habis, atau menunggu interaksi dari pengguna web).
+
+        for (Ulangi Sebanyak...) -> Batas sudah terkalkulasi sejak awal
+        while (Selama ...) -> Menunggu "Kejadian di Masa Depan"
+
+        • Gunakan for saat berhadapan dengan data yang sudah ada di tanganmu (seperti Array, daftar, teks panjang).
+        • Gunakan while saat berhadapan dengan waktu, status jaringan, atau interaksi manusia yang sifatnya tidak bisa diprediksi.
+        */
+
+        let i = 1;
+        while (i <=5 ) {
+            document.writeln(`Hai number ${i} <br>`);
+            i++;
+        }
+
+        let energi = 3; 
+        while (energi > 0) {
+            console.log(`Menambang batu ${energi}`);
+            energi--;
+        }
+        console.log(`Energi habis, istirahat dulu.`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi String & Number</title>
+</head>
+<body>
+    <script>
+        /*
+        Fungsi seperti parseFloat(), parseInt(), atau Number() itu 
+        hanya menerjemahkan nilai yang diberikan saat itu juga, tapi 
+        tidak memiliki hak untuk mengubah isi asli variabel secara 
+        permanen, kecuali diperintahkan dengan tanda sama dengan (=)/timpa isi
+        */
+
+        // 1️⃣ parseInt(string) Mengkonversi dari string ke number (bilangan bulat)
+        let pageNumber = "4";
+        let nextPage = document.writeln(`${parseInt(pageNumber)+1} </p>`);
+
+        pageNumber = "4.9";
+        document.writeln(`${parseInt(pageNumber)} </p>`); /* parseInt tidak 
+        membulatkan nilai dari 4.9 menjadi 5. Tetapi hanya 
+        mengambil nilai/string awalan dan membuang sisanya. */
+
+        // 2️⃣ parseFloat(string) Mengkonvertsi dari string ke number (bilangan pecahan ¼)
+        let inputSize = "2.9";
+        if(parseFloat(inputSize) < 5.0) {
+            document.writeln(`Ukuran pas (${inputSize})! Mulai proses unggah... </p>`)
+        } else {
+            document.writeln(`Gagal: File melebihi batas maksimal 5 MB.`)
+        }
+
+        // 3️⃣ Number(string) Mengkonversi dari string ke number (baik bilangan bulat ataupun pecahan)
+        // Dengan aturan yang sangat ketat.
+        let inputText = "5Tahun"; /* Di fungsi Number, apabila ada 
+        teks sedikit saja, maka akan ditolak oleh sistem dan dianggap 
+        NaN (Not a Number) */
+        let retensiTime = Number(inputText);
+
+        if(isNaN(retensiTime)){
+            document.writeln(`GAGAL: Data korup atau salah ketik dari sistem! Proses otomatisasi dihentikan. </p>`);
+        } else {
+            let destroying = 2026 + retensiTime;
+            document.writeln(`Arsip valid. Akan dimusnahkan pada tahun: ${destroying} </p>`)
+        }
+
+        // 4️⃣ number.toString() Mengkonversi dari number ke string/teks
+        let numberOfArsip = 150;
+        document.writeln(`DOC-KEMNAKER-${numberOfArsip.toString()} </p>`);
+
+        // 5️⃣ NaN (Not a Number)
+        const value1 = Number("salah"); // output NaN
+        document.writeln(`${typeof(value1)} </p>`); // Meskipun output nya NaN, tipe data nya yaitu tetap number
+        const result = 100 + value1;
+        document.writeln(`${result} </p>`); // Pengoperasian untuk NaN dengan apapun itu, akan tetap menghasilkan NaN.
+
+        // 6️⃣ isNaN() Mengecek apakah suatu data itu NaN atau bukan
+        document.writeln(`${isNaN(value1)} </p>`);
+        document.writeln(`${isNaN(100)} </p>`);
+        document.writeln(`${isNaN(NaN)} </p>`);
+
+    </script>
+</body>
+</html>

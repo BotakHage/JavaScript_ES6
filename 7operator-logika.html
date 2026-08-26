@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator Logika</title>
+</head>
+<body>
+    <script>
+        /*
+        Operator Logika digunakan untuk membandingkan dua buah data boolean, yang nanti 
+        nya akan menghasilkan keluaran nilai boolean juga.
+        */
+
+        let formatFile = ".pdf";
+        let ukuranMB = 5;
+        let kategori = "Surat";
+        let status = "Tidak Maintenance";
+
+        // (&&) Dan. Perlu true pada dua nilai yang ada.
+        if (formatFile === ".pdf" && ukuranMB < 5) {
+            document.writeln("Syarat awal lolos. File siap diproses.");
+        } else {
+            document.writeln("Gagal: File harus PDF dan di bawah 5 MB.");
+        }
+
+        document.writeln("</p>");
+
+        // (||) Atau. Cukup salah satu true, maka akan menghasilkan true
+        if (kategori === "Surat Masuk" || kategori === "Surat Keluar") {
+            document.writeln("File dimasukkan ke folder: Persuratan Umum.");
+        } else {
+            document.writeln("File dimasukkan ke folder: Dokumen lain-lain.");
+        }
+
+        document.writeln("</p>");
+
+        // (!) Kebalikan. Atau bisa dibaca juga "Not"
+        let sedangMaintenance = (status === "Maintenance");
+        if (!sedangMaintenance) {
+            document.writeln("Proses unggah ke sistem selesai!");
+        } else {
+            document.writeln("Gagal unggah: Server sedang dalam perbaikan.");
+        }
+
+    </script>
+</body>
+</html>

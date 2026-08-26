@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Expression</title>
+</head>
+<body>
+    <script>
+        // @ts-check 
+        /*
+        Switch expression merupakan percabangan yang sama dengan if, namun switch lebih cocok untuk kasus sederhana dibandingkan if.
+        Switch hanya untuk perbandingan ===
+        Di beberapa browser penggunaan switch dalam memproses nilai yang tetap dan spesifik, lebih cepat dibandingkan dengan if.
+        */
+
+        let akreditasi = "A";
+        switch (akreditasi) {
+            case "A": // pengecekan switch ini menggunakan === yang artinya dibandingkan dengan nilai dan juga tipe data nya
+                document.writeln(`Sekolah Terbaik & Terfavorit!`);
+                break; // break digunakan untuk menghentikan program apabila sudah memenuhi suatu kondisi
+            case "B":
+                document.writeln(`Sekolah Baik`);
+                break;
+            case "C":
+            case "D":
+                document.writeln(`Sekolah Cukup Baik`);
+                break;
+            default:
+                document.writeln(`Sekolah siapa ini?`);
+        }
+
+        // apabila dilakukan menggunakan if statement hasilnya adalah seperti ini, menjadi lebih banyak/panjang kode nya
+        if (akreditasi === "A") {
+            document.writeln(`Sekolah Terbaik & Terfavorit!`);
+        } else if (akreditasi === "B") {
+            document.writeln(`Sekolah Baik`);
+        } else if (akreditasi === "C" || akreditasi === "D") {
+            document.writeln(`Sekolah Cukup Baik`);
+        } else {
+            document.writeln(`Sekolah siapa ini?`);
+        }
+
+        /*
+        [SISTEM GUILD] Fungsi ini dipanggil secara otomatis oleh sistem web 
+        sesaat setelah seorang User berhasil melakukan Login.
+        Parameter 'userRole' adalah Tanda Pengenal yang didapat dari Database server.
+        */
+
+        const renderDashboardMenu = (userRole) => {
+
+            /*
+            Kita siapkan sebuah wadah kosong bernama 'uiElement'.
+            Wadah ini nantinya akan diisi dengan jenis elemen HTML/Menu 
+            yang sesuai dengan pangkat sang petualang.
+            */
+            let uiElement = "";
+
+            /*
+            Sang Penjaga Gerbang (Switch) berdiri di depan pintu masuk Dashboard.
+            Ia memegang Tanda Pengenal sang petualan (userRole) dan mulai mencocokkannya secara mutlak (===).
+            */
+            switch (userRole) {
+                
+                // --- Ruang Pertama ---
+                case "admin":
+                    /*
+                    Jika Tanda Pengenal bertuliskan "admin" (Sang Guild Master)
+                    Berikan ia akses ke seluruh relik suci dan kontrol kerajaan web!
+                    */
+                    uiElement = "Tampilkan Menu: [Kelola Pengguna] [Hapus Database] [Pengaturan Server]";
+
+                /*
+                Perintah 'break' dieksekusi.
+                Ini adalah instruksi kepada Penjaga Gerbang: "Pencarian selesai! 
+                Jangan buang tenaga memeriksa ruangan lain, langsung bukakan pintu!"
+                */
+                break;
+
+                // --- Ruang Kedua ---
+                case "editor":
+                    /*
+                    Jika petualang adalah seorang "editor" (Sang Ksatria Pencatat)
+                    Ia tidak boleh menghapus database, ia hanya boleh menulis dan mengubah gulungan naskah.
+                    */
+                    uiElement = "Tampilkan Menu: [Buat Artikel Baru] [Edit Artikel]";
+
+                    break; // Berhenti memeriksa, misi pencocokan selesai.
+
+                // --- Ruang Ketiga ---
+                case "viewer":
+                    /*
+                    Jika petualang adalah "viewer" (Penduduk Biasa / Pengunjung)
+                    Mereka hanya diizinkan melihat-lihat papan pengumuman.
+                    */
+                    uiElement = "Tampilkan Menu: [Baca Artikel] [Beri Komentar]"
+
+                    break;
+
+                // --- Zona Buangan (Fallback) ---
+                default:
+                    /*
+                    'default' adalah jebakan keamanan terakhir.
+                    Jika Tanda Pengenal TIDAK DIKENALI (mungkin penyusup atau ada bug sistem),
+                    lempar mereka ke dimensi kosong. Ini adalah best practice untuk mencegah error.
+                    */
+                    uiElement = "Tampilkan Menu: [Halaman Error 403 - Akses Ditolak]";
+
+                    // Kita tidak perlu menulis 'break' di sini karena 
+                    // ini sudah berada di ujung jalan buntu.
+            }
+            /*
+            Sang Penjaga Gerbang menyerahkan wadah 'uiElement' yang kini sudah berisi menu
+            kepada mesin web untuk digambar (dirender) ke layar monitor pemain.
+            */
+            return uiElement;
+        }
+
+        // --- SIMULASI SAAT GAME/WEB BERJALAN ---
+        // Skenario 1: Seorang Editor berhasil login
+        const menuUntukBudi = renderDashboardMenu("editor");
+        console.log(menuUntukBudi); 
+        // Output di layar web: Tampilkan Menu: [Buat Artikel Baru] [Edit Artikel]
+
+        // Skenario 2: Hacker mencoba login dengan role yang tidak ada di database web
+        const menuUntukHacker = renderDashboardMenu("shadow_assassin");
+        console.log(menuUntukHacker); 
+        // Output di layar web: Tampilkan Menu: [Halaman Error 403 - Akses Ditolak]
+    </script>
+</body>
+</html>

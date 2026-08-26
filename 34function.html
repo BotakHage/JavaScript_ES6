@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <script>
+        /*
+            Function ibarat sebuah mesin kecil, yang kebutuhan mesin nya bisa kita atur sendiri.
+            Function bisa dipanggil/digunakan berulang kali.
+            - Void Function adalah sebutan formal untuk Fungsi tanpa return.
+
+            1️⃣ Corong Bahan Baku (Parameter): Tempat memasukkan data mentah.
+            2️⃣ Ruang Mesin (Body): Tempat instruksi/logika dieksekusi (diapit kurung kurawal {}). Bersifat block scope.
+            3️⃣ Pintu Keluar Barang Jadi (Return): Hasil akhir yang diserahkan kembali.
+
+            🔹 Aturan Penamaan (Verb First): Karena Function adalah sebuah tindakan, namanya WAJIB diawali dengan kata kerja. 
+                Contoh: get..., calculate..., buat..., hitung.... Jangan namai Function dengan kata benda seperti dataArsip (itu nama untuk variabel/wadah).
+            🔹 Satu Mesin, Satu Tugas (Single Responsibility): Jika sebuah mesin bertugas merapikan nama, jangan paksa mesin itu untuk ikut mengecek password. 
+                Buatlah dua Function yang berbeda.
+
+            🔻 Statis: Fungsi yang TIDAK punya corong (parameter). 
+            Setiap kali ditekan, hasilnya 100% selalu sama. 
+            (Contoh: Mesin yang tugasnya hanya memunculkan tulisan "Selamat Datang" di layar).
+            🔻 Dinamis: Fungsi yang PUNYA corong (parameter). 
+            Hasilnya berubah-ubah mengikuti bahan baku yang dimasukkan. 
+            (Contoh: Kode hitungTahunMusnah(). Jika dimasukkan 2018, hasilnya 2023. Jika 2020, hasilnya 2025).
+
+            ▫️Void (Pekerja): Kadang kita hanya butuh aksi, bukan data.
+            Contoh: hapusArsip(). Kita tidak butuh mesin itu mengembalikan data angka/teks, kita cuma butuh mesin itu menghapus file di database. Selesai.
+            ▫️Fruitful (Kalkulator): Kadang kita butuh data untuk diproses di tahap selanjutnya.
+            Contoh: hitungGaji(). Setelah dihitung, kita butuh mesin itu mengembalikan angka total gaji (Return) agar kita bisa mengirim angka tersebut ke bank.
+
+            function helloAuto(firstName) {     // firstName sebagai corong/parameter
+                const sapaan = `Hallo ${firstName}!`; // kode didalam kurung sebagai mesin
+                return sapaan;              // return sebagai pintu keluar
+            }
+            const personTalk = helloAuto("Fauzi");
+            document.writeln(personTalk);  // Output: Hallo Fauzi!
+        */
+
+        // Function Basic
+        function cleaningText(input) {
+            const lowerCase = input.toLowerCase(); // // Mengubah semua huruf menjadi kecil
+            const liningText = lowerCase.replaceAll(" ", "_"); // Mengganti semua spasi (" ") menjadi garis bawah ("_")
+            debugger;
+            return liningText; // Dikembalikan, agar hasil bisa digunakan kembali
+        }
+        const dokumen1 = ("PT. Abe Kogyo Indonesia Naoto Iwatsuki 00338 2019");
+        document.writeln(dokumen1); // Hasil return akan dimunculkan disini
+
+document.writeln(`<br>`)
+
+        // Arrow Function
+        const hitungTahunMusnah = (tahunBuat) => {
+            const tahunAkhir = tahunBuat + 5;
+            return tahunAkhir; // Dikembalikan, agar hasil bisa digunakan kembali
+        }
+        const tahunMusnah = hitungTahunMusnah(2018);
+        document.writeln(tahunMusnah); // Hasil return akan dimunculkan disini
+
+document.writeln(`<br>`)
+
+        // 2 Parameter tapi hanya 1 Argumen yang dikirim
+        const sapa = (nama, waktu) => { // Dua parameter. Saat data yang diterima hanya satu Argumen, maka satu Argumen lagi akan bernilai Undefined
+            console.log(`Hai ${nama}, selamat ${waktu}`);
+        }
+        sapa("Ahmad"); // 1 Argumen
+        // Output: Hai Ahmad, selamat undefined
+
+        // Mencegah munculnya undefined parameter, bisa menggunakan Default Parameter
+        const sapaLagi = (nama, waktu = "Siang") => console.log(`Hai ${nama}, selamat ${waktu}`);
+        sapaLagi("Fauzi");
+
+document.writeln(`<br>`)
+
+        const akunKaryawan = {
+            namaLengkap: "Ahmad Fauzi Ariyanto",
+            posisi: "Intern",
+            cetakID() { // Method, fungsi di dalam object
+                return `ID Card: ${this.namaLengkap} - Posisi: ${this.posisi}` 
+                // kata this. digunakan untuk mencari/mempertegas bahwa data atau property itu berada di dalam dirinya sendiri (obejct yang sama)
+            }
+        }
+        document.writeln(akunKaryawan.cetakID());
+
+document.writeln(`<br>`)
+
+        // High-Order(HOF) Function & Closure
+        /*
+            💠 Higher-Order Function (Fungsi Tingkat Tinggi)
+            
+            HOF yang mengeluarkan fungsi tidak akan bisa hidup tanpa Closure
+
+            💠 Closure (Fenomena Ingatan Abadi)
+            Closure adalah fenomena di mana sebuah fungsi "mengingat" variabel-variabel yang ada di sekitarnya saat dia diciptakan, meskipun fungsi tempat dia berada sudah selesai berjalan dan dihancurkan.
+
+
+            - HOF adalah mekanismenya (memasukkan/mengeluarkan fungsi).
+            - Closure adalah efek samping magisnya (fungsi anak yang keluar tetap mengingat variabel fungsi induknya).
+        */
+
+        // Menerima Fungsi (Callback)
+        // 1. Fungsi biasa (Buruh Spesialis)
+        const ubahHurufBesar = (teks) => teks.toUpperCase();
+        const tambahStempel = (teks) => `[ARSIP] ${teks}`;
+
+        // 2. HOF (Manajer)
+        const prosesDokumen = (teks, mesinKecil) => { // disini dia menerima parameter mesinKecil yang berwujud sebuah function saat pengiriman argumen
+            const result = mesinKecil(teks); // disini manajer nyuruh buruh spesialis kerja, lewat function di mesinKecil
+            return result;
+        }
+
+        // 3. Eksekusi
+        document.writeln(`${prosesDokumen("Ahmad", ubahHurufBesar)}`);
+        document.writeln(`${prosesDokumen("Laporan_Keuangan", tambahStempel)}`);
+        // document.writeln(`${prosesDokumen("Laporan_Keuangan", "tambahStempel")}`); // Tapi kalo 2 argumen nya diisi string (bukan function), maka dia error
+
+
+
+
+
+    </script>
+</body>
+</html>
