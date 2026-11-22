@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Closure</title>
+</head>
+
+<body>
+    <script>
+        // let allMenu = [];
+        // async function data() {
+        //     try {
+        //         const url = await fetch('https://wpu-cafe.vercel.app/api/menu');
+        //         if(!url.ok){
+        //             throw new Error(`Terjadi Kesalahan: ${url.status}`)
+        //         } 
+        //         const data = await url.json();
+        //         allMenu = data.data;
+        //         console.log(allMenu)
+        //     } catch (err) {
+        //         console.log(err);
+                
+        //     }
+        // }
+
+        // data()
+
+        // let allCharacter = []
+        // const dataList = async () => {
+        //     try {
+        //         const res = await fetch('https://rickandmortyapi.com/api/character')
+        //         if(!res.ok){
+        //             throw new Error(`Terjadi Kesalahan: ${res.status}`)
+        //         }
+        //         const data = await res.json();
+        //         allCharacter = data.results;
+        //         displayCharacters(allCharacter)
+        //     } catch (err) {
+        //         console.error(err);
+        //     }
+        // }
+
+        // dataList()
+
+        // let penampungan = []
+        // fetch('https://api.github.com/users/BotakHage')
+        // .then((res)=>res.json())
+        // .then((data)=>{
+        //     penampungan = data
+        //     console.log(penampungan);
+        // })
+
+        const color = {
+            title: "Lawan",
+            color: "#0FF00F",
+            rating: 0,
+        }
+
+        console.log(`Before Mutating: ${color.rating}`);
+
+        const rateColor = (color, rating) => {
+            color.rating = rating;
+            return color;
+        }
+
+        const rating = rateColor(color, 5).rating;
+
+        console.log(`Mutating: ${rating}`);
+        console.log(`After Mutating: ${color.rating}`);
+        
+        
+        
+    </script>
+</body>
+
+</html>

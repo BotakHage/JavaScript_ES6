@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function as Value</title>
+</head>
+<body>
+    <script>
+        /*
+        Fungsi adalah Warga Negara Kelas Satu (First-Class Citizens).
+        Analogi Kaset Game PS5
+        1️⃣ Kaset bisa dipegang (nilai sebuah fungsi bisa disimpan ke dalam variabel)
+        2️⃣ Memberikan kaset kepada orang lain (mengirim fungsi sebagai parameter ke fungsi lain)
+        3️⃣ Kaset belum bisa berjalan, kalo belum dimasukkin ke dalam konsol dan di klik Play (memanggil fungsi dengan tanda kurung () )
+
+        Bedanya pemanggilan fungsi
+        formatSuratDinas   // mengirim fungsinya
+        formatSuratDinas() // memanggil fungsinya sekarang, dan jalankan
+
+        🔴 Ketika ingin mengirim fungsi sebagai callback, kirim/panggil tanpa menggunakan kurung.
+        🔴 Ketika menerima fungsi sebagai callback, lakukan pengecekan terlebih dahulu untuk memastikan parameter yang diterima 
+        benar-benar sebuah fungsi.
+
+        */
+
+        //🔺Function Expression (Menyimpan Fungsi ke Dalam Variabel)
+        const hitungPajak = function(nominal) {
+            return nominal * 0.11;
+        }
+        // Manggil variabel dengan kirim parameter untuk diproses fungsi
+        document.writeln(`${hitungPajak(1000000)}`);
+
+
+        //🔺Menyimpan Fungsi di Dalam Array atau Object (Method)
+        const convertCase = {
+            capital: function(text){return text.toUpperCase();},
+            lower: function(text){return text.toLowerCase();}
+        }
+        const name = "Ahmad Fauzi ariyanto";
+        document.writeln(`${convertCase.capital(name)}`);
+
+        //🔺Mengirim Fungsi Sebagai Parameter ke Fungsi Lain (Callback)
+        // HoF (High order Function)
+        function jalankanPencetakan(namaDokumen, strategiFormat) {
+            console.log("Menyiapkan kertas pencetakan...");
+            const teksHasilFormat = strategiFormat(namaDokumen);
+            console.log(`Mencetak: ${teksHasilFormat}`);
+        }
+
+        const formatSuratDinas = function(teks) {
+            return `[SURAT DINAS RESMI] - ${teks.toUpperCase()}`;
+        };
+        // Mengirim fungsi 'formatSuratDinas' TANPA tanda kurung
+        jalankanPencetakan("Laporan Keuangan 2026", formatSuratDinas) // formatSuratDinas menjadi callback, karena dikirim sebagai argumen ke fungsi lain.
+
+
+        /**
+        🔸Skenario :Pipeline (Rantai Pemrosesan) Pembersihan Data Arsip sebelum disuntikkan ke dalam database pusat.
+        Data mentah dari pengguna sering kali berantakan (ada spasi berlebih, huruf acak-acakan, atau karakter berbahaya).
+        SOLUSI yang dapat dilakukan menggunakan pola Strategy Pattern / Data Pipeline dengan memanfaatkan Function as Value.
+        */
+
+
+    </script>
+</body>
+</html>
